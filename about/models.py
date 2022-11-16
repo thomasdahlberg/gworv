@@ -53,7 +53,7 @@ class Bio(models.Model):
         FieldPanel('email'),
         FieldPanel('bio_text'),
         FieldPanel('type'),
-        ImageChooserPanel('avatar'),
+        FieldPanel('avatar'),
         FieldPanel('affiliation'),
         FieldPanel('active'),
     ]
@@ -71,7 +71,7 @@ class Partner(models.Model):
     active = models.BooleanField(default=True)
     panels = [
         FieldPanel('name'),
-        ImageChooserPanel('avatar'),
+        FieldPanel('avatar'),
         FieldPanel('active'),
     ]
 
@@ -150,11 +150,11 @@ class AboutIndexPage(Page):
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [
-                ImageChooserPanel('splash_image'),
+                FieldPanel('splash_image'),
                 FieldPanel('splash_text'),
                 FieldPanel('mission_header'),
                 FieldPanel('mission_text'),
-                ImageChooserPanel('images'),
+                FieldPanel('images'),
                 FieldPanel('video_url'),
             ],
             heading="Mission Section Settings",

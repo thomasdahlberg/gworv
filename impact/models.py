@@ -2,15 +2,13 @@ from django import forms
 from django.db import models
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
-from taggit.models import TaggedItemBase, Tag
-from modelcluster.contrib.taggit import ClusterTaggableManager
+# from taggit.models import TaggedItemBase, Tag
+# from modelcluster.contrib.taggit import ClusterTaggableManager
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
-from wagtail.search import index
-from wagtail.images.edit_handlers import ImageChooserPanel
+# from wagtail.search import index
 
 from wagtail.snippets.models import register_snippet
 
@@ -25,7 +23,7 @@ class NewsCategory(models.Model):
 
     panels = [
         FieldPanel('name'),
-        ImageChooserPanel('icon'),
+        FieldPanel('icon'),
     ]
 
     def __str__(self):
@@ -53,7 +51,7 @@ class ArticlePage(Page):
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
-            SnippetChooserPanel('category'),
+            FieldPanel('category'),
         ], heading="News Article Information"),
         FieldPanel('body', classname="full"),
         InlinePanel('gallery_images', label="Gallery images"),
@@ -73,7 +71,7 @@ class ArticleGalleryImage(Orderable):
     caption = models.CharField(blank=True, max_length=250)
 
     panels = [
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('caption'),
     ]
 
@@ -116,9 +114,9 @@ class Impact(Page):
     content_panels = Page.content_panels + [
         FieldPanel('header', classname="full"),
         FieldPanel('more_button_text', classname="full"),
-        SnippetChooserPanel('primary_feature'),
-        SnippetChooserPanel('secondary_feature'),
-        SnippetChooserPanel('tertiary_feature')
+        FieldPanel('primary_feature'),
+        FieldPanel('secondary_feature'),
+        FieldPanel('tertiary_feature')
     ]
 
 

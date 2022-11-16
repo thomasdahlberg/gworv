@@ -4,7 +4,6 @@ from involvement.models import JobPosting
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 from wagtail.snippets.models import register_snippet
@@ -113,15 +112,15 @@ class ProgramsIndexPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('hero_header'),
         FieldPanel('hero_description'),
-        ImageChooserPanel('hero_image'),
-        ImageChooserPanel('impact_image'),
+        FieldPanel('hero_image'),
+        FieldPanel('impact_image'),
         FieldPanel('impact_cta_text'),
         FieldPanel('impact_cta_link'),
         FieldPanel('work_header'),
         FieldPanel('involvement_header'),
         FieldPanel('involvement_cta_text'),
         FieldPanel('involvement_cta_link'),
-        ImageChooserPanel('involvement_image'),
+        FieldPanel('involvement_image'),
     ]
 
 
@@ -191,19 +190,19 @@ class ProgramPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('hero_header'),
-        ImageChooserPanel('hero_header_icon'),
+        FieldPanel('hero_header_icon'),
         FieldPanel('hero_description'),
-        ImageChooserPanel('hero_image'),
+        FieldPanel('hero_image'),
         FieldPanel('hero_cta_text'),
         FieldPanel('hero_cta_link'),
-        ImageChooserPanel('hero_image'),
-        ImageChooserPanel('hero_badge'),
+        FieldPanel('hero_image'),
+        FieldPanel('hero_badge'),
         FieldPanel('badge_header'),
         FieldPanel('secondary_header'),
-        ImageChooserPanel('secondary_hero_image'),
+        FieldPanel('secondary_hero_image'),
         FieldPanel('article_cta_text'),
         FieldPanel('work_opportunity_header'),
         FieldPanel('volunteer_header'),
         FieldPanel('volunteer_description'),
-        ImageChooserPanel('volunteer_badge'),
+        FieldPanel('volunteer_badge'),
     ]

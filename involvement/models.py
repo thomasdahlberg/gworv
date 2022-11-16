@@ -54,7 +54,7 @@ class GetInvolvedIndexPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('hero_header'),
-        ImageChooserPanel('hero_image'),
+        FieldPanel('hero_image'),
         FieldPanel('volunteer_header'),
         FieldPanel('volunteer_description'),
         FieldPanel('hiring_header'),
