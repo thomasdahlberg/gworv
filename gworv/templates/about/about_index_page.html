@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-aboutindexpage{% endblock %}
+
+{% block content %}
+  <main>
+    <nav id="page-nav">
+      <ul id="nav-link-list">
+        <li><a href="#">Mission</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Board</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </nav>
+    <figure id="splash">
+      <img id="splash-image"/>
+      <figcaption>
+        <h1 id="splash-header"></h1>
+      </figcaption>
+    </figure>
+    <section id="mission">
+      <h2 id="mission-header"></h2>
+      <p id="mission-text"></p>
+      <ul id="image-carousel-list">
+
+      </ul>
+      <iframe id="embeded video"></iframe>
+    </section>
+    <section id="team">
+      <h2 id="team-header"></h2>
+      <div id="directors">
+        <h3 id="directors-header"></h3>
+        <ul id="directors-list">
+
+        </ul>
+      </div>
+      <div id="board">
+        <h3 id="board-header"></h3>
+        <ul id="board-list">
+
+        </ul>
+      </div>
+      <div id="staff">
+        <h3 id="staff-header"></h3>
+        <ul id="staff-list">
+
+        </ul>
+      </div>      
+    </section>
+    <section id="partners">
+      <h2 id="partners-header"></h2>
+      <div id="partners-graphic-list">
+        <ul>
+
+        </ul>
+      </div>
+      <div id="partners-list">
+        <ul>
+
+        </ul>
+      </div>
+    </section>
+    {{ page.team_header|richtext }}
+  </main>
+{% endblock %}
