@@ -59,7 +59,7 @@ class Bio(models.Model):
     ]
 
     def __str__(self):
-        return f"{self.last_name}, {self.first_name} - {self.role}"
+        return f"{self.last_name}, {self.first_name}: {self.type} - {self.role}"
 
 
 @register_snippet
@@ -74,6 +74,9 @@ class Partner(models.Model):
         FieldPanel('avatar'),
         FieldPanel('active'),
     ]
+
+    def __str__(self):
+        return self.name
 
 
 @register_snippet
@@ -145,6 +148,7 @@ class AboutIndexPage(Page):
             type=BOARD_MEMBER, active=True)
         context['staff_bios'] = Bio.objects.filter(
             type=EMPLOYEE, active=True)
+        context['partners'] = Partner.objects.all()
         return context
 
     content_panels = Page.content_panels + [
