@@ -119,6 +119,13 @@ class AboutIndexPage(Page):
 
     mission_header = models.CharField(max_length=250, blank=True, null=True)
     mission_text = models.TextField(blank=True, null=True)
+    mission_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
 
     images = models.ForeignKey(
         'wagtailimages.Image',
@@ -158,6 +165,7 @@ class AboutIndexPage(Page):
                 FieldPanel('splash_text'),
                 FieldPanel('mission_header'),
                 FieldPanel('mission_text'),
+                FieldPanel('mission_image'),
                 FieldPanel('images'),
                 FieldPanel('video_url'),
             ],
@@ -166,11 +174,16 @@ class AboutIndexPage(Page):
         MultiFieldPanel(
             [
                 FieldPanel('team_header'),
-                FieldPanel('partners_header'),
                 FieldPanel('team_directors_subheader'),
                 FieldPanel('team_board_subheader'),
                 FieldPanel('team_staff_subheader'),
             ],
             heading="Team Section Settings",
         ),
+        MultiFieldPanel(
+            [
+                FieldPanel('partners_header'),
+            ],
+            heading="Partners Section Settings"
+        )
     ]

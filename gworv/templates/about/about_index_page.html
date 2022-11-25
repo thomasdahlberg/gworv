@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
 
 {% block body_class %}template-aboutindexpage{% endblock %}
 
@@ -15,7 +16,8 @@
       </ul>
     </nav>
     <figure id="splash">
-      <img id="splash-image"/>
+      {% image page.splash_image width-400 as splash_image %}
+      <img id="splash-image" src="{{ splash_image.url }}"/>
       <figcaption>
         <h1 id="splash-header">{{ page.splash_text }}</h1>
       </figcaption>
@@ -36,7 +38,8 @@
             <li>
               <figure>
                 <button>flip card</button>
-                <img src="#"/>
+                {% image bio.avatar width-400 as avatar %}
+                <img src="{{ avatar.url }}"/>
                 <p>{{ bio.bio_text }}</p>
                 <figcaption>
                   <p>{{ bio.first_name }} {{ bio.last_name }}</p>
@@ -55,7 +58,8 @@
           <li>
             <figure>
               <button>flip card</button>
-              <img src="#"/>
+              {% image bio.avatar width-400 as avatar %}
+              <img src="{{ avatar.url }}"/>
               <p>{{ bio.bio_text }}</p>
               <figcaption>
                 <p>{{ bio.first_name }} {{ bio.last_name }}</p>
@@ -74,7 +78,8 @@
           <li>
             <figure>
               <button>flip card</button>
-              <img src="#"/>
+              {% image bio.avatar width-400 as avatar %}
+              <img src="{{ avatar.url }}"/>
               <p>{{ bio.bio_text }}</p>
               <figcaption>
                 <p>{{ bio.first_name }} {{ bio.last_name }}</p>
