@@ -1,0 +1,7 @@
+{% load static wagtailcore_tags menu_tags %}
+
+{% for item in menu_items %}
+<a href="{{ item.href }}" class="dropdown-item">
+    {{ item.text }}
+</a>
+{% endfor %}

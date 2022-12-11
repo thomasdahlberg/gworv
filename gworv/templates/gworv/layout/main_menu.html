@@ -1,0 +1,18 @@
+{% load static wagtailcore_tags menu_tags %}
+
+<a href="/">Home</a>
+{% for item in menu_items %}
+    {% if item.text == "Get Involved" %}
+        <a class="nav-link get-involved" href="{{ item.href }}">{{ item.text }}</a>
+        {% if item.has_children_in_menu %}
+            {% sub_menu item %}
+        {% endif %}
+      
+      {% else %}
+        <a class="nav-link" href="{{ item.href }}">{{ item.text }}</a>
+        {% if item.has_children_in_menu %}
+            {% sub_menu item %}
+        {% endif %}
+
+    {% endif %}
+{% endfor %}
