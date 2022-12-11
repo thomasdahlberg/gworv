@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-aboutindexpage{% endblock %}
+
+{% block content %}
+  <main>
+    <nav id="page-nav">
+      <ul id="nav-link-list">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#board">Board</a></li>
+        <li><a href="#partners">Partners</a></li>
+      </ul>
+    </nav>
+    <figure id="splash">
+      {% image page.splash_image width-400 as splash_image %}
+      <img id="splash-image" src="{{ splash_image.url }}"/>
+      <figcaption>
+        <h1 id="splash-header">{{ page.splash_text }}</h1>
+      </figcaption>
+    </figure>
+    <section id="mission">
+      <h2 id="mission-header">{{ page.mission_header }}</h2>
+      <p id="mission-text">{{ page.mission_text }}</p>
+      <ul id="image-carousel-list">
+      </ul>
+      <iframe id="embeded video" src="#"></iframe>
+    </section>
+    <section id="team">
+      <h2 id="team-header">{{ page.team_header|richtext }}</h2>
+      <div id="directors">
+        <h3 id="directors-header">{{ page.team_directors_subheader}}</h3>
+        <ul id="directors-list">
+          {% for bio in director_bios %}
+            <li>
+              <figure>
+                <button>flip card</button>
+                {% image bio.avatar width-400 as avatar %}
+                <img src="{{ avatar.url }}"/>
+                <p>{{ bio.bio_text }}</p>
+                <figcaption>
+                  <p>{{ bio.first_name }} {{ bio.last_name }}</p>
+                  <p>{{ bio.role }}</p>
+                  <p>{{ bio.email }}</p>
+                </figcaption>
+              </figure>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div id="board">
+        <h3 id="board-header">{{ page.team_board_subheader }}</h3>
+        <ul id="board-list">
+          {% for bio in board_bios %}
+          <li>
+            <figure>
+              <button>flip card</button>
+              {% image bio.avatar width-400 as avatar %}
+              <img src="{{ avatar.url }}"/>
+              <p>{{ bio.bio_text }}</p>
+              <figcaption>
+                <p>{{ bio.first_name }} {{ bio.last_name }}</p>
+                <p>{{ bio.role }}</p>
+                <p>{{ bio.email }}</p>
+              </figcaption>
+            </figure>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div id="staff">
+        <h3 id="staff-header">{{ page.team_staff_subheader }}</h3>
+        <ul id="staff-list">
+          {% for bio in staff_bios %}
+          <li>
+            <figure>
+              <button>flip card</button>
+              {% image bio.avatar width-400 as avatar %}
+              <img src="{{ avatar.url }}"/>
+              <p>{{ bio.bio_text }}</p>
+              <figcaption>
+                <p>{{ bio.first_name }} {{ bio.last_name }}</p>
+                <p>{{ bio.role }}</p>
+                <p>{{ bio.email }}</p>
+              </figcaption>
+            </figure>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>      
+    </section>
+    <section id="partners">
+      <h2 id="partners-header">{{ page.partners_header|richtext}}</h2>
+      <div id="partners-graphic-list">
+        <ul>
+
+        </ul>
+      </div>
+      <div id="partners-list">
+        <ul>
+          {% for partner in partners %}
+            <li>{{ partner.name }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </main>
+{% endblock %}

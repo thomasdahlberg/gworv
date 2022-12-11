@@ -59,7 +59,7 @@ class Bio(models.Model):
     ]
 
     def __str__(self):
-        return f"{self.last_name}, {self.first_name} - {self.role}"
+        return f"{self.last_name}, {self.first_name}: {self.type} - {self.role}"
 
 
 @register_snippet
@@ -74,6 +74,9 @@ class Partner(models.Model):
         FieldPanel('avatar'),
         FieldPanel('active'),
     ]
+
+    def __str__(self):
+        return self.name
 
 
 @register_snippet
@@ -116,6 +119,13 @@ class AboutIndexPage(Page):
 
     mission_header = models.CharField(max_length=250, blank=True, null=True)
     mission_text = models.TextField(blank=True, null=True)
+    mission_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
 
     images = models.ForeignKey(
         'wagtailimages.Image',
@@ -145,6 +155,7 @@ class AboutIndexPage(Page):
             type=BOARD_MEMBER, active=True)
         context['staff_bios'] = Bio.objects.filter(
             type=EMPLOYEE, active=True)
+        context['partners'] = Partner.objects.all()
         return context
 
     content_panels = Page.content_panels + [
@@ -154,6 +165,7 @@ class AboutIndexPage(Page):
                 FieldPanel('splash_text'),
                 FieldPanel('mission_header'),
                 FieldPanel('mission_text'),
+                FieldPanel('mission_image'),
                 FieldPanel('images'),
                 FieldPanel('video_url'),
             ],
@@ -162,11 +174,16 @@ class AboutIndexPage(Page):
         MultiFieldPanel(
             [
                 FieldPanel('team_header'),
-                FieldPanel('partners_header'),
                 FieldPanel('team_directors_subheader'),
                 FieldPanel('team_board_subheader'),
                 FieldPanel('team_staff_subheader'),
             ],
             heading="Team Section Settings",
         ),
+        MultiFieldPanel(
+            [
+                FieldPanel('partners_header'),
+            ],
+            heading="Partners Section Settings"
+        )
     ]
