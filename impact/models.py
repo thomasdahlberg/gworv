@@ -34,6 +34,7 @@ class NewsCategory(models.Model):
 
 
 class ArticlePage(Page):
+    header = models.CharField(max_length=250, blank=True, null=True)
     splash_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -104,10 +105,8 @@ class Impact(Page):
     def get_context(self, request):
         context = super().get_context(request)
         categories = NewsCategory.objects.all()
-        # tags = Tag.objects.all()
         articles = self.get_children().live().order_by('-first_published_at')
         context['categories'] = categories
-        # context['tags'] = tags
         context['articles'] = articles
         return context
 

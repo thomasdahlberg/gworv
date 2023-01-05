@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-impact{% endblock %}
+
+{% block content %}
+  <main>
+    <h1 id="splash-header">{{ page.splash_text }}</h1>
+    <img href="#" alt="impact header icon">
+    <nav id="page-nav">
+      <ul id="nav-link-list">
+        <li><a href="#featured">Featured</a></li>
+        {% for category in categories %}
+          <li><a href="#{{ category.name }}">{{ category.name }}</a></li>
+        {% endfor %}
+      </ul>      
+    </nav>
+    <section id="featured">
+      <h2 id="featured-header">Featured Header</h2>
+      <a>
+        <article>
+          <img href="#" alt="article image">
+          <h3>{{ page.primary_feature.header }}</h3>
+          <p>{{ page.primary_feature.category }}</p>
+        </article>
+      </a>
+      <a>
+        <article>
+          <img href="#" alt="article image">
+          <h3>{{ page.secondary_feature.header }}</h3>
+          <p>{{ page.secondary_feature.category }}</p>
+        </article>
+      </a>
+      <a>
+        <article>
+          <img href="#" alt="article image">
+          <h3>{{ page.tertiary_feature.header }}</h3>
+          <p>{{ page.tertiary_feature.category }}</p>
+        </article>
+      </a>
+    </section>
+    {% for category in categories %}
+      <section id="{{ category.name }}">
+        <h2 id="{{ category.name }}-header">{{ category.name }}</h2>
+        {% for article in articles %}
+          {% if article.category == category %}
+            <a href="#">
+              <article>
+                <img href="#" alt="article image">
+                <h3>{{ article.header }}</h3>
+                <p>{{ article.category }}</p>
+              </article>  
+            </a>
+          {% endif %}
+        {% endfor %}
+      </section>
+    {% endfor %}
+  </main>
+{% endblock %}
